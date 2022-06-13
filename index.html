@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>历史上的今天</title>
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+        #app {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: space-around;
+            align-items: center;
+        }
+
+        .card {
+            background-color: #F5FFFA;
+            text-align: center;
+            margin-top: 1em;
+            padding: 2em;
+            max-width: 50%;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script>
+    $.ajax({
+        url: './data/index.json', success: function (result) {
+            result['index'].forEach(function (type) {
+                $.ajax({
+                    url: './data/' + type + '/index.json', success: function (result) {
+                        result['index'].forEach(function (index) {
+                            $.ajax({
+                                url: './data/' + type + '/' + index + '/index.json', success: function (result) {
+                                    result['index'].forEach(function (id) {
+                                        $.ajax({
+                                            url: './data/' + type + '/' + index + '/' + id + '.json',
+                                            success: function (result) {
+                                                const path = './data/' + type + '/' + index + '/'
+                                                const res = result['res'][0] === '.' ?
+                                                    result['id'] + result['res'] : result['res']
+                                                $('#app').append('<div class="card">'
+                                                    + '<h3>' + result['date'] + '</h3>'
+                                                    + '<h4>' + result['title'] + '</h4>'
+                                                    + '<img src="' + path + res + '" width="80%" alt="' + result['id'] + '">'
+                                                    + '</div>'
+                                                )
+                                            }
+                                        })
+                                    })
+                                }
+                            })
+                        })
+                    }
+                })
+            })
+        }
+    })
+</script>
+</body>
+</html>
