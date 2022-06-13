@@ -38,6 +38,37 @@
 
 机器人会在几秒钟内自动将事件移动到正确目录
 
+**步骤**
+
+> 方法1: (此方法适用于大量编辑)
+
+1. 点击右上角 `Fork` 按钮, 将此项目fork到自己的账户中
+
+2. 使用 [Git](https://git-scm.com/) 或 [GitHub Disktop](https://desktop.github.com/) 克隆此仓库
+    - **Git**: `git clone https://github.com/Dituon/todayInHistory.git`
+    - **GitHub Disktop**: `File` => `Clone reposit...` => `todayInHistory` => `Clone`
+
+3. 在本地编辑后提交更改
+    - **Git**: 
+         ```
+        git add .
+        git commit -m "something"
+        git push origin main
+        ```
+    - **GitHub Disktop**: `Commit to main` => `Push origin`
+
+4. 提交[Pull requests](https://github.com/Dituon/todayInHistory/compare)
+
+> 方法2: (少量文件)
+
+1. 进入 [anime/autoFile](https://github.com/Dituon/todayInHistory/new/main/data/anime/autoFile) 或 [meme/autoFile](https://github.com/Dituon/todayInHistory/new/main/data/meme/autoFile) 目录
+
+2. 点击右上角 `Add file` => `Create new file`, 参考 `结构` 中的格式编写json文件并提交
+
+3. 点击右上角 `Add file` => `Upload files`, 上传`res`中对应的图片文件并提交
+
+更改合并到主仓库后, 可以在[示例网页](https://dituon.github.io/todayInHistory/)中看到添加的事件
+
 ### 规范
 
 1. 对于具体年份未知的事件, 应当以作品发行年份作为事件年份
