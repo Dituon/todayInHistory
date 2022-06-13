@@ -63,11 +63,11 @@
 
 1. 进入 [anime/autoFile](https://github.com/Dituon/todayInHistory/new/main/data/anime/autoFile) 或 [meme/autoFile](https://github.com/Dituon/todayInHistory/new/main/data/meme/autoFile) 目录
 
-2. 点击右上角 `Add file` => `Create new file`, 参考 `结构` 中的格式编写json文件并提交
+2. 点击右上角 `Add file` => `Create new file`, 参考 [结构](https://github.com/Dituon/todayInHistory#%E7%BB%93%E6%9E%84) 中的格式编写json文件并提交
 
 3. 点击右上角 `Add file` => `Upload files`, 上传`res`中对应的图片文件并提交
 
-更改合并到主仓库后, 可以在[示例网页](https://dituon.github.io/todayInHistory/)中看到添加的事件
+> 更改合并到主仓库后, 可以在[示例网页](https://dituon.github.io/todayInHistory/)中看到添加的事件
 
 ### 规范
 
