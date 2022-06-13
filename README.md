@@ -2,7 +2,7 @@
  
 历史上的今天
 
-[示例网页](xxx)
+[示例网页](https://dituon.github.io/todayInHistory/)
 
 ### 结构
 
