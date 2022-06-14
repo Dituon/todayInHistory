@@ -4,6 +4,8 @@
 
 [示例网页](https://dituon.github.io/todayInHistory/)
 
+[事件生成](https://dituon.github.io/todayInHistory/editor.html)
+
 ### 结构
 
 `data` 为根目录, 目前有 `anime` 和 `meme` 两个子类
