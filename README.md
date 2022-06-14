@@ -42,7 +42,7 @@
 
 **步骤**
 
-> 方法1: (此方法适用于大量编辑)
+> 方法1: (适用于大量编辑)
 
 1. 点击右上角 `Fork` 按钮, 将此项目fork到自己的账户中
 
@@ -71,8 +71,14 @@
 
 > 更改合并到主仓库后, 可以在[示例网页](https://dituon.github.io/todayInHistory/)中看到添加的事件
 
+**注意**
+
+`autoFile`目录仅接受[标准结构](https://github.com/Dituon/todayInHistory#%E7%BB%93%E6%9E%84)的json和图片文件
+
+例如: `data/meme/autoFile/cherry.json` `data/meme/autoFile/cherry.png`
+
 ### 规范
 
 1. 对于具体年份未知的事件, 应当以作品发行年份作为事件年份
-2. 对于设定发生在未来或古代的事件, 年份范围为`0001 - 9999`
+2. 对于设定发生在古代或未来的事件, 年份范围为`0001 - 9999`
 3. 对于不存在的日期, 如`12月32日`, 应向下取最接近的日期
