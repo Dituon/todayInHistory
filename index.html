@@ -3,20 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>历史上的今天</title>
     <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <style>
         #app {
             display: flex;
             flex-direction: column;
-            flex-wrap: nowrap;
             align-content: space-around;
             align-items: center;
         }
 
+        #bar {
+            display: flex;
+            margin-top: 0.2em;
+        }
+
         .card {
-            background-color: #F5FFFA;
             text-align: center;
             margin-top: 1em;
             padding: 2em;
@@ -24,8 +27,22 @@
             border-radius: 12px;
         }
 
+        .check {
+            padding: 0.3em;
+            border-radius: 12px;
+            margin: 0.4em;
+        }
+
+        .anime {
+            background-color: #FFF0F5;
+        }
+
+        .meme {
+            background-color: #F5FFFA;
+        }
+
         @media screen and (max-width: 750px) {
-            .card{
+            .card {
                 max-width: 85%;
                 padding: 2.5em;
             }
@@ -34,41 +51,51 @@
 </head>
 
 <body>
-    <div id="app"><a href="https://github.com/Dituon/todayInHistory">项目地址</a></div>
-    <script>
-        $.ajax({
-            url: './data/index.json', success: function (result) {
-                result['index'].forEach(function (type) {
-                    $.ajax({
-                        url: './data/' + type + '/index.json', success: function (result) {
-                            result['index'].forEach(function (index) {
-                                $.ajax({
-                                    url: './data/' + type + '/' + index + '/index.json', success: function (result) {
-                                        result['index'].forEach(function (id) {
-                                            $.ajax({
-                                                url: './data/' + type + '/' + index + '/' + id + '.json',
-                                                success: function (result) {
-                                                    const path = './data/' + type + '/' + index + '/'
-                                                    const res = result['res'][0] === '.' ?
-                                                        result['id'] + result['res'] : result['res']
-                                                    $('#app').append('<div class="card">'
-                                                        + '<h3>' + result['date'] + '</h3>'
-                                                        + '<h4>' + result['title'] + '</h4>'
-                                                        + '<img src="' + path + res + '" width="80%" alt="' + result['id'] + '">'
-                                                        + '</div>'
-                                                    )
-                                                }
-                                            })
+<div id="app">
+    <a href="https://github.com/Dituon/todayInHistory">项目地址</a>
+    <div id="bar">
+        <div class="check anime"><span>anime</span><input type="checkbox" id="anime" checked></div>
+        <div class="check meme"><span>meme</span><input type="checkbox" id="meme" checked></div>
+    </div>
+</div>
+<script>
+    $.ajax({
+        url: './data/index.json', success: function (result) {
+            result['index'].forEach(function (type) {
+                $.ajax({
+                    url: './data/' + type + '/index.json', success: function (result) {
+                        result['index'].forEach(function (index) {
+                            $.ajax({
+                                url: './data/' + type + '/' + index + '/index.json', success: function (result) {
+                                    result['index'].forEach(function (id) {
+                                        $.ajax({
+                                            url: './data/' + type + '/' + index + '/' + id + '.json',
+                                            success: function (result) {
+                                                const path = './data/' + type + '/' + index + '/'
+                                                const res = result['res'][0] === '.' ?
+                                                    result['id'] + result['res'] : result['res']
+                                                $('#app').append('<div class="card ' + type + '">'
+                                                    + '<h3>' + result['date'] + '</h3>'
+                                                    + '<h4>' + result['title'] + '</h4>'
+                                                    + '<img src="' + path + res + '" width="80%" alt="' + result['id'] + '">'
+                                                    + '</div>'
+                                                )
+                                            }
                                         })
-                                    }
-                                })
+                                    })
+                                }
                             })
-                        }
-                    })
+                        })
+                    }
                 })
-            }
-        })
-    </script>
+            })
+        }
+    })
+
+    $('input').change(function (e){
+        $('.card.'+e.target.id).slideToggle()
+    })
+</script>
 </body>
 
 </html>
