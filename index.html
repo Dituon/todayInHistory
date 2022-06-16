@@ -7,6 +7,10 @@
     <title>历史上的今天</title>
     <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <style>
+        body {
+            text-align: center;
+        }
+
         #app {
             display: flex;
             flex-direction: column;
@@ -41,6 +45,11 @@
             background-color: #F5FFFA;
         }
 
+        a {
+            color: #FFB6C1;
+            font-weight: bold;
+        }
+
         @media screen and (max-width: 750px) {
             .card {
                 max-width: 85%;
@@ -51,13 +60,14 @@
 </head>
 
 <body>
+<a href="https://github.com/Dituon/todayInHistory">♥ 项目地址 ♥</a>
 <div id="app">
-    <a href="https://github.com/Dituon/todayInHistory">项目地址</a>
     <div id="bar">
         <div class="check anime"><span>anime</span><input type="checkbox" id="anime" checked></div>
         <div class="check meme"><span>meme</span><input type="checkbox" id="meme" checked></div>
     </div>
 </div>
+<a href="https://github.com/Dituon/todayInHistory">♥ 没有了啦, 欢迎提交! ♥</a>
 <script>
     $.ajax({
         url: './data/index.json', success: function (result) {
@@ -74,8 +84,11 @@
                                                 const path = './data/' + type + '/' + index + '/'
                                                 const res = result['res'][0] === '.' ?
                                                     result['id'] + result['res'] : result['res']
+                                                const date = new Date(result['date'])
+                                                let dateStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+                                                let dateToNow = (Date.now() - date) / 1000 / 60 / 60 / 24
                                                 $('#app').append('<div class="card ' + type + '">'
-                                                    + '<h3>' + result['date'] + '</h3>'
+                                                    + '<h3 title="距今 '+dateToNow.toFixed()+' 天">' + dateStr + '</h3>'
                                                     + '<h4>' + result['title'] + '</h4>'
                                                     + '<img src="' + path + res + '" width="80%" alt="' + result['id'] + '">'
                                                     + '</div>'
@@ -92,8 +105,8 @@
         }
     })
 
-    $('input').change(function (e){
-        $('.card.'+e.target.id).slideToggle()
+    $('input').change(function (e) {
+        $('.card.' + e.target.id).slideToggle()
     })
 </script>
 </body>
